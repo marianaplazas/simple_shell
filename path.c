@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "shell.h"
 extern char **environ;
 
 typedef struct nodo
@@ -25,10 +25,10 @@ node *new_node(node **head ,char *str)
 	return(new);
 }
 
-int main()
+void path()
 {
-	int i = 0, box = 1, lenght_palabra = 0, cont = 0, j, y;
-	char *word, *aux, *str_tok;
+	int i = 0, lenght_palabra = 0, cont = 0, j, y;
+	char *aux, *str_tok;
 	char *palabra = "PATH";
 	node *head;
 	head = NULL;
@@ -52,7 +52,6 @@ int main()
 			{
 				str_tok = strtok(NULL, ":");
 				if(str_tok != NULL)
-					printf(" %s\n", str_tok);
 				new_node(&head, str_tok);
 			}
 			break;
