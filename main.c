@@ -1,29 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "shell.h"
+
 int main(void)
 {
 	char *line = NULL;
-	size_t len = 0;
+	size_t n = 0;
+	ssize_t state;
 	char **token;
-/*	int status;
- */
 	
 	while (1) 
 	{
 		printf("$ ");
-		/* status =*/ getline(&line, &len, stdin);
-		/**
-		 *aqui debe ir el manejador de errores
-		 *usar continue
-		 */
+		state = getline(&line, &n, stdin);
+
+		if (state == -1)
+		{
+			perror("./shell");
+			exit(-1);
+		}
+
 		token = _strtok(line);
 
-		if (token[0] == NULL
-		    perror("no such a file or directory");
+		if (token[0] == NULL)
+		{
+			perror("./shell");
+		}
 
-		if (file_exist(token) != 0)
-			path(token[0]);
+		/*if (stat(token) != 0)
+			path(token[0]);*/
 
 		if (fork() == 0)
 		{
@@ -35,7 +40,7 @@ int main(void)
 		}
 		else
 		{
-			wait(NULL)
+			wait(NULL);
 		}
 
 	}
