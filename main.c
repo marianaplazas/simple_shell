@@ -1,14 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
+
 #include "shell.h"
 
-int main(void)
+int main(int argc __attribute__((unused)), char* argv[])
 {
 	char *line = NULL;
 	size_t n = 0;
 	ssize_t state;
 	char **token;
-	
+
 	while (1) 
 	{
 		printf("$ ");
@@ -16,17 +15,22 @@ int main(void)
 
 		if (state == -1)
 		{
-			perror("./shell");
-			exit(-1);
+			perror(argv[0]);
+			exit(EXIT_FAILURE);
 		}
 
 		token = _strtok(line);
 
 		if (token[0] == NULL)
 		{
-			perror("./shell");
+			perror(argv[0]);
+			exit(EXIT_FAILURE);
 		}
 
+		if (_strcmp(token[0], "exit") == 0)
+		{
+			exit(EXIT_SUCCESS);
+		}
 		/*if (stat(token) != 0)
 			path(token[0]);*/
 
