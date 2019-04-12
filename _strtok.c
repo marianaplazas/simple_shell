@@ -37,12 +37,13 @@ char *strcp(char *str)
 	int size = 0;
 	
 	if (str == NULL)
-		return (NULL);
-	while (str[size])
+		return (NULL);	while (str[size])
 		size++;
-	while (counter < size)
+	dup = malloc(size * sizeof(char));
+	while (counter <= size)
 	{
 		dup[counter] = str[counter];
+		counter++;
 	}
 	return (dup);
 }
