@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <unistd.h>
+#include <signal.h>
 
 int _putchar(char);
 void print_env(char **environment);
@@ -17,5 +18,6 @@ int hand_errors(char **av);
 void path();
 int cont_word(char *palabra);
 char *strcp(char *str);
+void manage_sigint(int sig);
 
 #endif
