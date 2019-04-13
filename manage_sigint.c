@@ -3,5 +3,7 @@
 
 void manage_sigint(int sig __attribute__((unused)))
 {
-	;
+	_putchar('\n');
+	_putchar('$');
+	_putchar(' ');
 }
