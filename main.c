@@ -1,4 +1,5 @@
 #include "shell.h"
+
 int main()
 {
 	char *line = NULL;
@@ -7,11 +8,12 @@ int main()
 	ssize_t state;
 	char **token;
 
+	signal(SIGINT, manage_sigint);
 	while (state != -1) 
 	{
 		printf("$ ");
 		state = getline(&line, &n, stdin);
-		if (state != -1 && state != 1)
+		if (state != -1 || state != 1)
 		{
 			token = _strtok(line, delimit);
 			/* if (token == NULL) */
@@ -24,15 +26,18 @@ int main()
 			{
 				exit(EXIT_SUCCESS);
 			}
-			
-			if (fork() == 0)
+
+			if (_strcmp(token[0], "env") == 0)
+			{
+				print_env(token);
+			}
+			else if (fork() == 0)
 			{
 				if (execve(token[0], token, NULL) == -1)
 				{
 					perror("./hsh");
 					exit(-1);
-				}
-				
+				}	
 			}
 			else
 			{
