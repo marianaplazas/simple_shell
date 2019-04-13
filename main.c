@@ -13,7 +13,7 @@ int main()
 	{
 		printf("$ ");
 		state = getline(&line, &n, stdin);
-		if (state != -1 || state != 1)
+		if (state != -1 && state != 1)
 		{
 			token = _strtok(line, delimit);
 			/* if (token == NULL) */
