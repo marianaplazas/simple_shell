@@ -30,6 +30,8 @@ int main(int ac __attribute__((unused)), char **argv __attribute__((unused)), ch
 						
 			if (_strcmp(token[0], "exit") == 0)
 			{
+				free(line);
+				free (token);
 				exit(EXIT_SUCCESS);
 			}
 
@@ -41,7 +43,7 @@ int main(int ac __attribute__((unused)), char **argv __attribute__((unused)), ch
 			if (pid == 0)
 			{
 				if(stat(token[0], &st)== 0)
-				        execve(token[0], token, NULL);
+					execve(token[0], token, NULL);
 				else
 					token[0] = path(token[0]);
 				if (execve(token[0], token, NULL) == -1)
@@ -55,8 +57,10 @@ int main(int ac __attribute__((unused)), char **argv __attribute__((unused)), ch
 				waitpid(pid, &status, 0);
 			}
 		}
-	}
-	/*free(line);*/
+	}	
+
+	free(token);
+	free(line);
 	exit(state);
 	return(0);
 }
