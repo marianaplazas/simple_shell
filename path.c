@@ -27,15 +27,20 @@ char *path(char *var)
 
 		if (cont == lenght_palabra)
 		{
-			dup_env = _strdup(environ[i]);
+			dup_env  = strdup(environ[i]);
 			str_tok = strtok(dup_env, "=");
 			while(str_tok != NULL)
 			{
 				str_tok = strtok(NULL, ":");
-				_stat = _strcat(str_tok, var);
-				exist = stat(_stat, &st);
-				if (exist == 0)
-					return(_stat); 
+				
+				while(str_tok != NULL)
+				{
+					_stat = _strcat(str_tok, var);
+					exist = stat(_stat, &st);
+					if (exist == 0)
+						return(_stat);
+					str_tok = strtok(NULL, ":");
+				}
 			}
 			return(_stat);
 			break;
