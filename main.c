@@ -1,5 +1,4 @@
 #include "shell.h"
-
 int main()
 {
 	char *line = NULL;
@@ -7,6 +6,8 @@ int main()
 	size_t n = 0;
 	ssize_t state;
 	char **token;
+	pid_t pid;
+	int status = 0;
 
 	signal(SIGINT, manage_sigint);
 	while (state != -1) 
@@ -21,6 +22,7 @@ int main()
 			/* 	perror(argv[0]); */
 			/* 	exit(EXIT_FAILURE); */
 			/* } */
+		
 			
 			if (_strcmp(token[0], "exit") == 0)
 			{
@@ -31,7 +33,9 @@ int main()
 			{
 				print_env(token);
 			}
-			else if (fork() == 0)
+			token[0] = path(token[0]);
+			pid = fork();
+			if (pid == 0)
 			{
 				if (execve(token[0], token, NULL) == -1)
 				{
@@ -41,11 +45,11 @@ int main()
 			}
 			else
 			{
-				wait(NULL);
+				waitpid(pid, &status, 0);
 			}
 		}
 	}
-	free(line);
-	exit(98);
+	/*free(line);*/
+	exit(state);
 	return(0);
 }
