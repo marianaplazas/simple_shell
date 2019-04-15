@@ -1,25 +1,27 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include "shell.h"
-char *path(char *var)
+
+/**
+ * path - Gives us the absolute path of a given executable program.
+ * @exec_file: executable file being searched.
+ *
+ * Return: Absolute path of a given executable file.
+ */
+char *path(char *exec_file)
 {
 	int i = 0, lenght_palabra = 0, cont = 0, j, y, exist = 0;
-	char *aux, *str_tok, *_stat, *dup_env;
-	char *palabra = "PATH";
+	char *aux, *str_tok, *_stat, *dup_env, *palabra;
 	struct stat st;
 
-	var = _strcat("/", var);
+	palabra = "PATH";
+	exec_file = _strcat("/", exec_file);
 	lenght_palabra = cont_word(palabra);
-
-	while(environ[i] != NULL)
+	while (environ[i] != NULL)
 	{
 		aux = environ[i];
-
 		for (y = 0, j = 0, cont = 0; y < lenght_palabra; y++, j++)
 		{
-			if(aux[j] == palabra[j])
+			if (aux[j] == palabra[j])
 				cont++;
 			else
 				break;
@@ -29,36 +31,42 @@ char *path(char *var)
 		{
 			dup_env  = strdup(environ[i]);
 			str_tok = strtok(dup_env, "=");
-			while(str_tok != NULL)
+			while (str_tok != NULL)
 			{
 				str_tok = strtok(NULL, ":");
-				
-				while(str_tok != NULL)
+				while (str_tok != NULL)
 				{
-					_stat = _strcat(str_tok, var);
+					_stat = _strcat(str_tok, exec_file);
 					exist = stat(_stat, &st);
 					if (exist == 0)
-						return(_stat);
+						return (_stat);
+
 					str_tok = strtok(NULL, ":");
 				}
 			}
-			return(_stat);
-			break;
+			return (_stat);
 		}
 		i++;
 	}
 	return (NULL);
 }
 
-int cont_word(char * palabra)
+/**
+ * cont_word - counts words
+ * @palabra: string containing words.
+ *
+ * Return: number of words.
+ */
+int cont_word(char *palabra)
 {
 	int i;
 
-	for(i = 0; palabra[i] != '\0'; i++)
+	for (i = 0; palabra[i] != '\0'; i++)
 	{
 	}
 	return (i);
 }
+
 /**
  *_strcat - concatenates two strings
  *
@@ -85,6 +93,7 @@ char *_strcat(char *dest, char *src)
 	dest[one + two] = '\0';
 	return (dest);
 }
+
 /**
  *_strdup - duplicates a string
  *
@@ -102,7 +111,7 @@ char *_strdup(char *str)
 	for (i = 0; *(str + i); i++)
 		len++;
 	copy = malloc(len * sizeof(char) + 1);
-	
+
 	if (copy == NULL)
 		return (NULL);
 	for (i = 0; i < len; i++)
