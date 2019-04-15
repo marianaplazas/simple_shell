@@ -1,5 +1,9 @@
 #include "shell.h"
 
+/**
+ * print_env - prints environment.
+ * @environment: array of pointers containing  environment variables.
+ */
 void print_env(char **environment)
 {
 	int i, j;

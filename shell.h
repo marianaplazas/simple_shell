@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <signal.h>
+#include <string.h>
 extern char **environ;
 char *_strcat(char *dest, char *src);
 int _putchar(char);
