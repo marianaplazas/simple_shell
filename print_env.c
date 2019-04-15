@@ -1,4 +1,3 @@
-
 #include "shell.h"
 
 void print_env(char **environment)
