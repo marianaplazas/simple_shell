@@ -1,0 +1,45 @@
+.TH SIMPLE-SHELL 1
+.SH NAME
+HSH - command interpreter (Shell)
+.SH SYNOPSIS
+.B hsh
+.SH DESCRIPTION 
+.B hsh 
+is a interpreter of commands based on DASH (Debian Almquist shell). It executes commands read
+from standard input or from a file. It's a Holberton School project. 
+
+.PP
+.B Overview
+The shell is a command that reads lines from either a file or the terminal and interprets
+them. It's purpose is to execute other commands.
+
+.PP
+.B Invocation
+There are two different modes to use the simple shell, the first without arguments has the following format
+.B ./hsh
+or the non interactive mod that is invocated with
+.B echo "/bin/ls" | ./hsh
+these two ways expand the prompt and work in the machine.
+To close the shell you can use   
+.B exit
+or
+.B ctrl-D
+
+.PP
+.B Command Exit Status
+
+Each 
+
+.SH FORMAT 
+
+
+.SH BUGS
+Not known.
+
+.SH AUTHORS
+
+Mariana Plazas,
+Miguel Antonio Cortés Muñoz
+
+.SH SEE ALSO
+man sh
