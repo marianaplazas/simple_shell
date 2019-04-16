@@ -21,7 +21,8 @@ int main(int ac __attribute__((unused)), char **argv, char **envp)
 	while (state != -1)
 	{
 		if (isatty(0) != 0)
-		{	_putchar('$'), _putchar(' ');	}
+		{
+		}
 		state = getline(&line, &n, stdin);
 		if (state != -1 && state != 1)
 		{			token = _strtok(line, delimit);
