@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * path - Gives us the absolute path of a given executable program.
  * @exec_file: executable file being searched.
@@ -15,30 +14,23 @@ char *path(char *exec_file)
 
 	palabra = "PATH";
 	aux_exec_file = _strcat("/", exec_file);
-	free(exec_file); 
+	free(exec_file);
 	lenght_palabra = cont_word(palabra);
 	while (environ[i] != NULL)
-	{
-		aux = environ[i];
+	{ aux = environ[i];
 		for (y = 0, j = 0, cont = 0; y < lenght_palabra; y++, j++)
 		{
 			if (aux[j] == palabra[j])
 				cont++;
 			else
-				break;
-		}
-
+				break; }
 		if (cont == lenght_palabra)
-		{
-			dup_env  = strdup(environ[i]);
-			str_tok = strtok(dup_env, "=");
-			while (str_tok != NULL)
-			{
-				/* str_tok = malloc(sizeof(char) * 120); */
-				str_tok = strtok(NULL, ":");
+		{ dup_env  = strdup(environ[i]);
+		str_tok = strtok(dup_env, "=");
+		while (str_tok != NULL)
+			{ str_tok = strtok(NULL, ":");
 				while (str_tok != NULL)
-				{
-					_stat = _strcat(str_tok, aux_exec_file);
+				{ _stat = _strcat(str_tok, aux_exec_file);
 					exist = stat(_stat, &st);
 					if (exist == 0)
 						return (_stat);
