@@ -1,9 +1,11 @@
-TH SIMPLE-SHELL "14 Apr 2019" "1.0"  
-.SH NAME 
+.TH A SIMPLE-SHELL "14 Apr 2019" "1.0"  
+.SH NAME
+HSH - command interpreter (Shell)
+
 .B HSH
 
 .SH DESCRIPTION 
-hsh is a standard interpreter commands based on the shell version created by Thompson that executes commands read
+hsh is a interpreter of commands based on the shell version created by Thompson that executes commands read
 from standard input or from a file 
 .PP
 .B Overview
