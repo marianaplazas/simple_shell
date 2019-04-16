@@ -1,4 +1,4 @@
-.TH SIMPLE-SHELL 1
+.TH SIMPLE-SHELL 1 "15 April 2019" "Version 1.0"
 .SH NAME
 HSH - command interpreter (Shell)
 .SH SYNOPSIS
