@@ -9,7 +9,7 @@
  */
 int main(int ac __attribute__((unused)), char **argv, char **envp)
 {
-	char *line = NULL, *delimit = " \t\r\n\v\f", **token = NULL;
+	char *line = NULL, *delimit = " \t\n", **token = NULL;
 	size_t n = 0;
 	ssize_t state = 0;
 	pid_t pid;
