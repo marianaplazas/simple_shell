@@ -52,7 +52,7 @@ char *strcp(char *str)
 	while (str[size])
 		size++;
 
-	dup = malloc(size * sizeof(char));
+	dup = malloc((size + 1) * sizeof(char));
 	while (counter <= size)
 	{
 		dup[counter] = str[counter];

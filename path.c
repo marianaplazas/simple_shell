@@ -1,4 +1,3 @@
-
 #include "shell.h"
 
 /**
@@ -11,10 +10,12 @@ char *path(char *exec_file)
 {
 	int i = 0, lenght_palabra = 0, cont = 0, j, y, exist = 0;
 	char *aux, *str_tok, *_stat, *dup_env, *palabra;
+	char *aux_exec_file;
 	struct stat st;
 
 	palabra = "PATH";
-	exec_file = _strcat("/", exec_file);
+	aux_exec_file = _strcat("/", exec_file);
+	free(exec_file); 
 	lenght_palabra = cont_word(palabra);
 	while (environ[i] != NULL)
 	{
@@ -33,17 +34,22 @@ char *path(char *exec_file)
 			str_tok = strtok(dup_env, "=");
 			while (str_tok != NULL)
 			{
+				/* str_tok = malloc(sizeof(char) * 120); */
 				str_tok = strtok(NULL, ":");
 				while (str_tok != NULL)
 				{
-					_stat = _strcat(str_tok, exec_file);
+					_stat = _strcat(str_tok, aux_exec_file);
 					exist = stat(_stat, &st);
 					if (exist == 0)
 						return (_stat);
 
 					str_tok = strtok(NULL, ":");
+					if (str_tok != NULL)
+						free(_stat);
 				}
 			}
+			free(dup_env);
+			free(aux_exec_file);
 			return (_stat);
 		}
 		i++;
