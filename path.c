@@ -25,7 +25,7 @@ char *path(char *exec_file)
 			else
 				break; }
 		if (cont == lenght_palabra)
-		{ dup_env  = strdup(environ[i]);
+		{ dup_env  = _strdup(environ[i]);
 		str_tok = strtok(dup_env, "=");
 		while (str_tok != NULL)
 			{ str_tok = strtok(NULL, ":");
