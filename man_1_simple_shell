@@ -2,7 +2,7 @@
 .SH NAME
 HSH - command interpreter (Shell)
 .SH SYNOPSIS
-.B hsh
+.B hsh The header file is called shell.h where all the prototypes
 .SH DESCRIPTION 
 .B hsh 
 is a interpreter of commands based on DASH (Debian Almquist shell). It executes commands read
@@ -18,7 +18,8 @@ them. It's purpose is to execute other commands.
 There are two different modes to use the simple shell, the first without arguments has the following format
 .B ./hsh
 or the non interactive mod that is invocated with
-.B echo "/bin/ls" | ./hsh
+.B 
+echo "/bin/ls" | ./hsh
 these two ways expand the prompt and work in the machine.
 To close the shell you can use   
 .B exit
@@ -30,8 +31,13 @@ or
 
 Each 
 
-.SH FORMAT 
-
+.SH EXAMPLES
+.SS pwd
+you will recived the path of the current directory
+.SS  ls
+it will print all files in the current directory
+.SS cat
+it will display the file
 
 .SH BUGS
 Not known.
