@@ -25,11 +25,11 @@ int main(int ac __attribute__((unused)), char **argv, char **envp)
 		}
 		state = getline(&line, &n, stdin);
 		if (state != -1 && state != 1)
-		{			token = _strtok(line, delimit);
+		{	token = _strtok(line, delimit);
 			if (token == NULL)
-			{	perror(token[0]), exit(EXIT_FAILURE);	}
+			{	perror(token[0]), exit(127);	}
 			if (_strcmp(token[0], "exit") == 0)
-			{	free(line), free(token),  exit(EXIT_SUCCESS);	}
+			{	free(line), free(token),  exit(status);	}
 			if (_strcmp(token[0], "env") == 0)
 				print_env(envp);
 			pid = fork();
@@ -41,11 +41,11 @@ int main(int ac __attribute__((unused)), char **argv, char **envp)
 					token[0] = path(token[0]);
 				if (execve(token[0], token, NULL) == -1)
 				{	perror(argv[0]);
-					exit(-1);      }	}
+					exit(127);      }	}
 			else
 				waitpid(pid, &status, 0);	}	  }
 	free(token);
 	free(line);
-	exit(state);
+	exit(status);
 	return (0);
 }
