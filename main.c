@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * main - shell program
  * @ac: number of arguments. Unused.
@@ -10,9 +9,9 @@
  */
 int main(int ac __attribute__((unused)), char **argv, char **envp)
 {
-	char *line = NULL, *delimit = " \t\r\n\v\f", **token;
+	char *line = NULL, *delimit = " \t\n", **token = NULL;
 	size_t n = 0;
-	ssize_t state;
+	ssize_t state = 0;
 	pid_t pid;
 	int status = 0;
 	struct stat st;
@@ -25,11 +24,13 @@ int main(int ac __attribute__((unused)), char **argv, char **envp)
 		}
 		state = getline(&line, &n, stdin);
 		if (state != -1 && state != 1)
+
 		{	token = _strtok(line, delimit);
 			if (token == NULL)
 			{	perror(token[0]), exit(127);	}
 			if (_strcmp(token[0], "exit") == 0)
 			{	free(line), free(token),  exit(status);	}
+
 			if (_strcmp(token[0], "env") == 0)
 				print_env(envp);
 			pid = fork();
@@ -40,6 +41,7 @@ int main(int ac __attribute__((unused)), char **argv, char **envp)
 				else
 					token[0] = path(token[0]);
 				if (execve(token[0], token, NULL) == -1)
+
 				{	perror(argv[0]);
 					exit(127);      }	}
 			else
@@ -47,5 +49,6 @@ int main(int ac __attribute__((unused)), char **argv, char **envp)
 	free(token);
 	free(line);
 	exit(status);
+
 	return (0);
 }

@@ -14,7 +14,7 @@ int _strcmp(char *s1, char *s2)
 	int comp;
 
 	comp = 0;
-	while (s1[comp] != '\0')
+	while (s2[comp] != '\0')
 	{
 		if (s1[comp] != s2[comp])
 		{
